@@ -1,0 +1,184 @@
+{
+  "$defs": {
+    "ArtifactMeta": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "minLength": 1,
+          "title": "Artifact Id",
+          "type": "string"
+        },
+        "artifact_type": {
+          "minLength": 1,
+          "title": "Artifact Type",
+          "type": "string"
+        },
+        "project_id": {
+          "minLength": 1,
+          "title": "Project Id",
+          "type": "string"
+        },
+        "version": {
+          "default": 1,
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        },
+        "status": {
+          "$ref": "#/$defs/ArtifactStatus",
+          "default": "draft"
+        },
+        "source_artifacts": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Source Artifacts",
+          "type": "array"
+        },
+        "created_by": {
+          "minLength": 1,
+          "title": "Created By",
+          "type": "string"
+        },
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        },
+        "updated_at": {
+          "format": "date-time",
+          "title": "Updated At",
+          "type": "string"
+        }
+      },
+      "required": [
+        "artifact_id",
+        "artifact_type",
+        "project_id",
+        "created_by",
+        "created_at",
+        "updated_at"
+      ],
+      "title": "ArtifactMeta",
+      "type": "object"
+    },
+    "ArtifactStatus": {
+      "enum": [
+        "draft",
+        "pending",
+        "approved",
+        "rejected",
+        "superseded",
+        "completed"
+      ],
+      "title": "ArtifactStatus",
+      "type": "string"
+    },
+    "RequirementReviewIssue": {
+      "additionalProperties": false,
+      "properties": {
+        "issue_id": {
+          "minLength": 1,
+          "title": "Issue Id",
+          "type": "string"
+        },
+        "issue_type": {
+          "minLength": 1,
+          "title": "Issue Type",
+          "type": "string"
+        },
+        "severity": {
+          "enum": [
+            "blocker",
+            "high",
+            "medium",
+            "low"
+          ],
+          "title": "Severity",
+          "type": "string"
+        },
+        "location": {
+          "minLength": 1,
+          "title": "Location",
+          "type": "string"
+        },
+        "description": {
+          "minLength": 1,
+          "title": "Description",
+          "type": "string"
+        },
+        "impact": {
+          "minLength": 1,
+          "title": "Impact",
+          "type": "string"
+        },
+        "suggestion": {
+          "minLength": 1,
+          "title": "Suggestion",
+          "type": "string"
+        },
+        "needs_product_confirmation": {
+          "default": false,
+          "title": "Needs Product Confirmation",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "issue_id",
+        "issue_type",
+        "severity",
+        "location",
+        "description",
+        "impact",
+        "suggestion"
+      ],
+      "title": "RequirementReviewIssue",
+      "type": "object"
+    },
+    "ReviewDecision": {
+      "enum": [
+        "pass",
+        "fail",
+        "needs_human_decision"
+      ],
+      "title": "ReviewDecision",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "meta": {
+      "$ref": "#/$defs/ArtifactMeta"
+    },
+    "decision": {
+      "$ref": "#/$defs/ReviewDecision"
+    },
+    "issues": {
+      "items": {
+        "$ref": "#/$defs/RequirementReviewIssue"
+      },
+      "title": "Issues",
+      "type": "array"
+    },
+    "assumptions": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Assumptions",
+      "type": "array"
+    },
+    "open_questions": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Open Questions",
+      "type": "array"
+    }
+  },
+  "required": [
+    "meta",
+    "decision"
+  ],
+  "title": "RequirementReview",
+  "type": "object"
+}

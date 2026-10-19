@@ -1,0 +1,275 @@
+{
+  "$defs": {
+    "ArtifactMeta": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "minLength": 1,
+          "title": "Artifact Id",
+          "type": "string"
+        },
+        "artifact_type": {
+          "minLength": 1,
+          "title": "Artifact Type",
+          "type": "string"
+        },
+        "project_id": {
+          "minLength": 1,
+          "title": "Project Id",
+          "type": "string"
+        },
+        "version": {
+          "default": 1,
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        },
+        "status": {
+          "$ref": "#/$defs/ArtifactStatus",
+          "default": "draft"
+        },
+        "source_artifacts": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Source Artifacts",
+          "type": "array"
+        },
+        "created_by": {
+          "minLength": 1,
+          "title": "Created By",
+          "type": "string"
+        },
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        },
+        "updated_at": {
+          "format": "date-time",
+          "title": "Updated At",
+          "type": "string"
+        }
+      },
+      "required": [
+        "artifact_id",
+        "artifact_type",
+        "project_id",
+        "created_by",
+        "created_at",
+        "updated_at"
+      ],
+      "title": "ArtifactMeta",
+      "type": "object"
+    },
+    "ArtifactStatus": {
+      "enum": [
+        "draft",
+        "pending",
+        "approved",
+        "rejected",
+        "superseded",
+        "completed"
+      ],
+      "title": "ArtifactStatus",
+      "type": "string"
+    },
+    "Evidence": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_id": {
+          "minLength": 1,
+          "title": "Evidence Id",
+          "type": "string"
+        },
+        "evidence_type": {
+          "enum": [
+            "screenshot",
+            "log",
+            "video",
+            "file",
+            "other"
+          ],
+          "title": "Evidence Type",
+          "type": "string"
+        },
+        "path": {
+          "minLength": 1,
+          "title": "Path",
+          "type": "string"
+        },
+        "description": {
+          "minLength": 1,
+          "title": "Description",
+          "type": "string"
+        },
+        "sha256": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sha256"
+        },
+        "size_bytes": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Size Bytes"
+        },
+        "media_type": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Media Type"
+        }
+      },
+      "required": [
+        "evidence_id",
+        "evidence_type",
+        "path",
+        "description"
+      ],
+      "title": "Evidence",
+      "type": "object"
+    },
+    "ExecutionRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "record_id": {
+          "minLength": 1,
+          "title": "Record Id",
+          "type": "string"
+        },
+        "case_id": {
+          "minLength": 1,
+          "title": "Case Id",
+          "type": "string"
+        },
+        "case_version": {
+          "minimum": 1,
+          "title": "Case Version",
+          "type": "integer"
+        },
+        "environment": {
+          "minLength": 1,
+          "title": "Environment",
+          "type": "string"
+        },
+        "executed_by": {
+          "minLength": 1,
+          "title": "Executed By",
+          "type": "string"
+        },
+        "executed_at": {
+          "format": "date-time",
+          "title": "Executed At",
+          "type": "string"
+        },
+        "result": {
+          "$ref": "#/$defs/ExecutionResult"
+        },
+        "actual_result": {
+          "minLength": 1,
+          "title": "Actual Result",
+          "type": "string"
+        },
+        "defect_refs": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Defect Refs",
+          "type": "array"
+        },
+        "evidence": {
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "title": "Evidence",
+          "type": "array"
+        },
+        "notes": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Notes",
+          "type": "array"
+        }
+      },
+      "required": [
+        "record_id",
+        "case_id",
+        "case_version",
+        "environment",
+        "executed_by",
+        "executed_at",
+        "result",
+        "actual_result"
+      ],
+      "title": "ExecutionRecord",
+      "type": "object"
+    },
+    "ExecutionResult": {
+      "enum": [
+        "passed",
+        "failed",
+        "blocked",
+        "skipped"
+      ],
+      "title": "ExecutionResult",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Versioned set of manual results for one approved test design.",
+  "properties": {
+    "meta": {
+      "$ref": "#/$defs/ArtifactMeta"
+    },
+    "test_design_id": {
+      "minLength": 1,
+      "title": "Test Design Id",
+      "type": "string"
+    },
+    "test_design_version": {
+      "minimum": 1,
+      "title": "Test Design Version",
+      "type": "integer"
+    },
+    "records": {
+      "items": {
+        "$ref": "#/$defs/ExecutionRecord"
+      },
+      "minItems": 1,
+      "title": "Records",
+      "type": "array"
+    }
+  },
+  "required": [
+    "meta",
+    "test_design_id",
+    "test_design_version",
+    "records"
+  ],
+  "title": "ExecutionBatch",
+  "type": "object"
+}

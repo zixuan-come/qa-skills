@@ -1,0 +1,171 @@
+{
+  "$defs": {
+    "ArtifactMeta": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "minLength": 1,
+          "title": "Artifact Id",
+          "type": "string"
+        },
+        "artifact_type": {
+          "minLength": 1,
+          "title": "Artifact Type",
+          "type": "string"
+        },
+        "project_id": {
+          "minLength": 1,
+          "title": "Project Id",
+          "type": "string"
+        },
+        "version": {
+          "default": 1,
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        },
+        "status": {
+          "$ref": "#/$defs/ArtifactStatus",
+          "default": "draft"
+        },
+        "source_artifacts": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Source Artifacts",
+          "type": "array"
+        },
+        "created_by": {
+          "minLength": 1,
+          "title": "Created By",
+          "type": "string"
+        },
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        },
+        "updated_at": {
+          "format": "date-time",
+          "title": "Updated At",
+          "type": "string"
+        }
+      },
+      "required": [
+        "artifact_id",
+        "artifact_type",
+        "project_id",
+        "created_by",
+        "created_at",
+        "updated_at"
+      ],
+      "title": "ArtifactMeta",
+      "type": "object"
+    },
+    "ArtifactStatus": {
+      "enum": [
+        "draft",
+        "pending",
+        "approved",
+        "rejected",
+        "superseded",
+        "completed"
+      ],
+      "title": "ArtifactStatus",
+      "type": "string"
+    },
+    "ReviewDecision": {
+      "enum": [
+        "pass",
+        "fail",
+        "needs_human_decision"
+      ],
+      "title": "ReviewDecision",
+      "type": "string"
+    },
+    "TestCaseReviewIssue": {
+      "additionalProperties": false,
+      "properties": {
+        "issue_id": {
+          "minLength": 1,
+          "title": "Issue Id",
+          "type": "string"
+        },
+        "case_id": {
+          "minLength": 1,
+          "title": "Case Id",
+          "type": "string"
+        },
+        "severity": {
+          "enum": [
+            "blocker",
+            "high",
+            "medium",
+            "low"
+          ],
+          "title": "Severity",
+          "type": "string"
+        },
+        "issue_type": {
+          "minLength": 1,
+          "title": "Issue Type",
+          "type": "string"
+        },
+        "description": {
+          "minLength": 1,
+          "title": "Description",
+          "type": "string"
+        },
+        "evidence": {
+          "minLength": 1,
+          "title": "Evidence",
+          "type": "string"
+        },
+        "suggestion": {
+          "minLength": 1,
+          "title": "Suggestion",
+          "type": "string"
+        }
+      },
+      "required": [
+        "issue_id",
+        "case_id",
+        "severity",
+        "issue_type",
+        "description",
+        "evidence",
+        "suggestion"
+      ],
+      "title": "TestCaseReviewIssue",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "meta": {
+      "$ref": "#/$defs/ArtifactMeta"
+    },
+    "decision": {
+      "$ref": "#/$defs/ReviewDecision"
+    },
+    "issues": {
+      "items": {
+        "$ref": "#/$defs/TestCaseReviewIssue"
+      },
+      "title": "Issues",
+      "type": "array"
+    },
+    "coverage_summary": {
+      "minLength": 1,
+      "title": "Coverage Summary",
+      "type": "string"
+    }
+  },
+  "required": [
+    "meta",
+    "decision",
+    "coverage_summary"
+  ],
+  "title": "TestCaseReview",
+  "type": "object"
+}

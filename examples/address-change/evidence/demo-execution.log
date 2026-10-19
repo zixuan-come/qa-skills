@@ -1,0 +1,5 @@
+SYNTHETIC DEMO LOG — not produced by a real test execution
+TC-001: saved address=示例路1号; list address=示例路1号
+TC-002: saved 100 code points; list length=100
+TC-003: saved 101 code points; save unexpectedly accepted
+TC-004: blocked because the example environment could not provide a logged-out session

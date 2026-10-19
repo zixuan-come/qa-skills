@@ -1,0 +1,109 @@
+{
+  "meta": {
+    "artifact_id": "execution-demo-001",
+    "artifact_type": "execution_batch",
+    "project_id": "address-demo",
+    "version": 1,
+    "status": "completed",
+    "source_artifacts": [
+      "design-approved-demo"
+    ],
+    "created_by": "example-author",
+    "created_at": "2026-10-19T09:00:00+08:00",
+    "updated_at": "2026-10-19T09:00:00+08:00"
+  },
+  "test_design_id": "design-approved-demo",
+  "test_design_version": 3,
+  "records": [
+    {
+      "record_id": "ER-001",
+      "case_id": "TC-001",
+      "case_version": 1,
+      "environment": "synthetic-demo",
+      "executed_by": "example-author",
+      "executed_at": "2026-10-19T09:00:00+08:00",
+      "result": "passed",
+      "actual_result": "列表展示示例路1号",
+      "defect_refs": [],
+      "evidence": [
+        {
+          "evidence_id": "E-DEMO",
+          "evidence_type": "log",
+          "path": "evidence/demo-execution.log",
+          "description": "人工编写的演示日志，不是真实执行证据"
+        }
+      ],
+      "notes": [
+        "仅演示数据结构"
+      ]
+    },
+    {
+      "record_id": "ER-002",
+      "case_id": "TC-002",
+      "case_version": 1,
+      "environment": "synthetic-demo",
+      "executed_by": "example-author",
+      "executed_at": "2026-10-19T09:00:00+08:00",
+      "result": "passed",
+      "actual_result": "完整保存并展示100字符",
+      "defect_refs": [],
+      "evidence": [
+        {
+          "evidence_id": "E-DEMO",
+          "evidence_type": "log",
+          "path": "evidence/demo-execution.log",
+          "description": "人工编写的演示日志，不是真实执行证据"
+        }
+      ],
+      "notes": [
+        "仅演示数据结构"
+      ]
+    },
+    {
+      "record_id": "ER-003",
+      "case_id": "TC-003",
+      "case_version": 1,
+      "environment": "synthetic-demo",
+      "executed_by": "example-author",
+      "executed_at": "2026-10-19T09:00:00+08:00",
+      "result": "failed",
+      "actual_result": "101字符被错误保存",
+      "defect_refs": [
+        "BUG-DEMO-001"
+      ],
+      "evidence": [
+        {
+          "evidence_id": "E-DEMO",
+          "evidence_type": "log",
+          "path": "evidence/demo-execution.log",
+          "description": "人工编写的演示日志，不是真实执行证据"
+        }
+      ],
+      "notes": [
+        "仅演示数据结构"
+      ]
+    },
+    {
+      "record_id": "ER-004",
+      "case_id": "TC-004",
+      "case_version": 1,
+      "environment": "synthetic-demo",
+      "executed_by": "example-author",
+      "executed_at": "2026-10-19T09:00:00+08:00",
+      "result": "blocked",
+      "actual_result": "无法构造未登录会话，未执行保存请求",
+      "defect_refs": [],
+      "evidence": [
+        {
+          "evidence_id": "E-DEMO",
+          "evidence_type": "log",
+          "path": "evidence/demo-execution.log",
+          "description": "人工编写的演示日志，不是真实执行证据"
+        }
+      ],
+      "notes": [
+        "仅演示数据结构"
+      ]
+    }
+  ]
+}

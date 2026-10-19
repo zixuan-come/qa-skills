@@ -1,0 +1,38 @@
+{
+  "meta": {
+    "artifact_id": "case-review-001",
+    "artifact_type": "testcase_review",
+    "project_id": "address-demo",
+    "version": 1,
+    "status": "completed",
+    "source_artifacts": [
+      "analysis-001",
+      "design-001-v1"
+    ],
+    "created_by": "example-author",
+    "created_at": "2026-10-19T09:00:00+08:00",
+    "updated_at": "2026-10-19T09:00:00+08:00"
+  },
+  "decision": "fail",
+  "issues": [
+    {
+      "issue_id": "CR-001",
+      "case_id": "TC-001",
+      "severity": "high",
+      "issue_type": "missing_boundary",
+      "description": "长度规则只有测试点，缺少100与101字符的独立用例",
+      "evidence": "REQ-002、TP-002；当前只有TC-001正常保存用例",
+      "suggestion": "补充允许上限及刚好越界两条用例"
+    },
+    {
+      "issue_id": "CR-002",
+      "case_id": "TC-001",
+      "severity": "high",
+      "issue_type": "missing_requirement",
+      "description": "权限和保存失败恢复规则尚未覆盖",
+      "evidence": "REQ-003、REQ-004未映射到当前设计",
+      "suggestion": "补充登录、归属和失败保留原值场景，完成后再人工确认"
+    }
+  ],
+  "coverage_summary": "v1只覆盖正常保存；边界、权限和失败恢复场景需要补充。"
+}

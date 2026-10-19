@@ -1,0 +1,66 @@
+{
+  "meta": {
+    "artifact_id": "report-demo-001",
+    "artifact_type": "test_report",
+    "project_id": "address-demo",
+    "version": 1,
+    "status": "completed",
+    "source_artifacts": [
+      "design-approved-demo",
+      "execution-demo-001"
+    ],
+    "created_by": "example-author",
+    "created_at": "2026-10-19T09:00:00+08:00",
+    "updated_at": "2026-10-19T09:00:00+08:00"
+  },
+  "scope": "人工确认的4条示例用例，非完整地址模块验收",
+  "environment": "synthetic-demo",
+  "total_cases": 4,
+  "passed": 2,
+  "failed": 1,
+  "blocked": 1,
+  "skipped": 0,
+  "defect_refs": [
+    "BUG-DEMO-001"
+  ],
+  "risk_summary": [
+    "示例TC-003失败",
+    "示例TC-004被阻塞",
+    "1字符、空值、越权及失败恢复等未纳入本次演示范围"
+  ],
+  "conclusion": "演示范围存在失败、阻塞和未覆盖项，需要进一步处理与验证；不提供发布批准。",
+  "trace_refs": [
+    {
+      "source": "REQ-001",
+      "refs": [
+        "TP-001",
+        "TC-001",
+        "ER-001"
+      ]
+    },
+    {
+      "source": "REQ-002",
+      "refs": [
+        "TP-002",
+        "TC-002",
+        "ER-002"
+      ]
+    },
+    {
+      "source": "REQ-002",
+      "refs": [
+        "TP-002",
+        "TC-003",
+        "ER-003"
+      ]
+    },
+    {
+      "source": "REQ-003",
+      "refs": [
+        "TP-003",
+        "TC-004",
+        "ER-004"
+      ]
+    }
+  ]
+}

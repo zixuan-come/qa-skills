@@ -1,0 +1,275 @@
+{
+  "$defs": {
+    "ArtifactMeta": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "minLength": 1,
+          "title": "Artifact Id",
+          "type": "string"
+        },
+        "artifact_type": {
+          "minLength": 1,
+          "title": "Artifact Type",
+          "type": "string"
+        },
+        "project_id": {
+          "minLength": 1,
+          "title": "Project Id",
+          "type": "string"
+        },
+        "version": {
+          "default": 1,
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        },
+        "status": {
+          "$ref": "#/$defs/ArtifactStatus",
+          "default": "draft"
+        },
+        "source_artifacts": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Source Artifacts",
+          "type": "array"
+        },
+        "created_by": {
+          "minLength": 1,
+          "title": "Created By",
+          "type": "string"
+        },
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        },
+        "updated_at": {
+          "format": "date-time",
+          "title": "Updated At",
+          "type": "string"
+        }
+      },
+      "required": [
+        "artifact_id",
+        "artifact_type",
+        "project_id",
+        "created_by",
+        "created_at",
+        "updated_at"
+      ],
+      "title": "ArtifactMeta",
+      "type": "object"
+    },
+    "ArtifactStatus": {
+      "enum": [
+        "draft",
+        "pending",
+        "approved",
+        "rejected",
+        "superseded",
+        "completed"
+      ],
+      "title": "ArtifactStatus",
+      "type": "string"
+    },
+    "TestCase": {
+      "additionalProperties": false,
+      "properties": {
+        "case_id": {
+          "minLength": 1,
+          "title": "Case Id",
+          "type": "string"
+        },
+        "version": {
+          "default": 1,
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        },
+        "requirement_refs": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Requirement Refs",
+          "type": "array"
+        },
+        "test_point_refs": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Test Point Refs",
+          "type": "array"
+        },
+        "title": {
+          "minLength": 1,
+          "title": "Title",
+          "type": "string"
+        },
+        "priority": {
+          "enum": [
+            "P0",
+            "P1",
+            "P2",
+            "P3"
+          ],
+          "title": "Priority",
+          "type": "string"
+        },
+        "preconditions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Preconditions",
+          "type": "array"
+        },
+        "test_data": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Test Data",
+          "type": "array"
+        },
+        "steps": {
+          "items": {
+            "$ref": "#/$defs/TestStep"
+          },
+          "minItems": 1,
+          "title": "Steps",
+          "type": "array"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Tags",
+          "type": "array"
+        }
+      },
+      "required": [
+        "case_id",
+        "requirement_refs",
+        "test_point_refs",
+        "title",
+        "priority",
+        "steps"
+      ],
+      "title": "TestCase",
+      "type": "object"
+    },
+    "TestPoint": {
+      "additionalProperties": false,
+      "properties": {
+        "test_point_id": {
+          "minLength": 1,
+          "title": "Test Point Id",
+          "type": "string"
+        },
+        "requirement_refs": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Requirement Refs",
+          "type": "array"
+        },
+        "category": {
+          "enum": [
+            "normal",
+            "abnormal",
+            "boundary",
+            "permission",
+            "state",
+            "data",
+            "compatibility",
+            "other"
+          ],
+          "title": "Category",
+          "type": "string"
+        },
+        "description": {
+          "minLength": 1,
+          "title": "Description",
+          "type": "string"
+        },
+        "risk": {
+          "default": "medium",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ],
+          "title": "Risk",
+          "type": "string"
+        }
+      },
+      "required": [
+        "test_point_id",
+        "requirement_refs",
+        "category",
+        "description"
+      ],
+      "title": "TestPoint",
+      "type": "object"
+    },
+    "TestStep": {
+      "additionalProperties": false,
+      "properties": {
+        "step_no": {
+          "minimum": 1,
+          "title": "Step No",
+          "type": "integer"
+        },
+        "action": {
+          "minLength": 1,
+          "title": "Action",
+          "type": "string"
+        },
+        "expected_result": {
+          "minLength": 1,
+          "title": "Expected Result",
+          "type": "string"
+        }
+      },
+      "required": [
+        "step_no",
+        "action",
+        "expected_result"
+      ],
+      "title": "TestStep",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "meta": {
+      "$ref": "#/$defs/ArtifactMeta"
+    },
+    "test_points": {
+      "items": {
+        "$ref": "#/$defs/TestPoint"
+      },
+      "minItems": 1,
+      "title": "Test Points",
+      "type": "array"
+    },
+    "test_cases": {
+      "items": {
+        "$ref": "#/$defs/TestCase"
+      },
+      "minItems": 1,
+      "title": "Test Cases",
+      "type": "array"
+    }
+  },
+  "required": [
+    "meta",
+    "test_points",
+    "test_cases"
+  ],
+  "title": "TestDesign",
+  "type": "object"
+}

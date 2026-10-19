@@ -1,0 +1,65 @@
+{
+  "meta": {
+    "artifact_id": "design-001-v1",
+    "artifact_type": "test_design",
+    "project_id": "address-demo",
+    "version": 1,
+    "status": "draft",
+    "source_artifacts": [
+      "analysis-001"
+    ],
+    "created_by": "example-author",
+    "created_at": "2026-10-19T09:00:00+08:00",
+    "updated_at": "2026-10-19T09:00:00+08:00"
+  },
+  "test_points": [
+    {
+      "test_point_id": "TP-001",
+      "requirement_refs": [
+        "REQ-001"
+      ],
+      "category": "normal",
+      "description": "合法保存并展示新值",
+      "risk": "high"
+    },
+    {
+      "test_point_id": "TP-002",
+      "requirement_refs": [
+        "REQ-002"
+      ],
+      "category": "boundary",
+      "description": "100字符允许，101字符拒绝",
+      "risk": "high"
+    }
+  ],
+  "test_cases": [
+    {
+      "case_id": "TC-001",
+      "version": 1,
+      "requirement_refs": [
+        "REQ-001"
+      ],
+      "test_point_refs": [
+        "TP-001"
+      ],
+      "title": "修改合法地址后列表展示新值",
+      "priority": "P1",
+      "preconditions": [
+        "测试环境可用；准备本人已有地址"
+      ],
+      "test_data": [
+        "新地址：示例路1号"
+      ],
+      "steps": [
+        {
+          "step_no": 1,
+          "action": "登录后编辑本人地址为示例路1号并保存",
+          "expected_result": "保存成功，列表展示示例路1号"
+        }
+      ],
+      "tags": [
+        "address-demo"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "meta": {
+    "artifact_id": "review-001",
+    "artifact_type": "requirement_review",
+    "project_id": "address-demo",
+    "version": 1,
+    "status": "completed",
+    "source_artifacts": [],
+    "created_by": "example-author",
+    "created_at": "2026-10-19T09:00:00+08:00",
+    "updated_at": "2026-10-19T09:00:00+08:00"
+  },
+  "decision": "fail",
+  "issues": [
+    {
+      "issue_id": "RR-001",
+      "issue_type": "ambiguity",
+      "severity": "high",
+      "location": "requirement-draft.md:第 3 行",
+      "description": "地址长度和更新时机没有明确规则",
+      "impact": "无法设计稳定的边界及保存结果检查",
+      "suggestion": "明确长度上下限、计数方式及成功判定"
+    },
+    {
+      "issue_id": "RR-002",
+      "issue_type": "omission",
+      "severity": "high",
+      "location": "requirement-draft.md:第 4 行",
+      "description": "保存失败后旧地址是否保留未说明",
+      "impact": "无法验证失败后的数据一致性",
+      "suggestion": "明确失败时数据状态及可观察提示"
+    }
+  ],
+  "assumptions": [],
+  "open_questions": [
+    "地址长度如何计数？",
+    "保存失败后是否保留原地址？"
+  ]
+}
